@@ -2,10 +2,10 @@
 const { content } = Astro.props;
 ---
 
-<div class="mb-16">
-  <h2 class="text-3xl font-bold text-white mb-8 flex items-center">
+<section class="mb-16" data-reveal>
+  <h2 class="mb-8 flex items-center text-3xl font-bold text-white">
     <svg
-      class="mr-3 text-purple-400 w-8 h-8"
+      class="mr-3 h-8 w-8 text-cyan-300"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -19,18 +19,19 @@ const { content } = Astro.props;
     </svg>
     {content.sections.experience}
   </h2>
-  <div class="space-y-6">
+  <div class="relative space-y-6 before:absolute before:left-4 before:top-2 before:h-full before:w-px before:bg-cyan-300/20 md:before:left-6">
     {
       content.experience.map((job: any) => (
-        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
-          <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+        <article class="timeline-item relative ml-10 rounded-2xl border border-white/10 bg-slate-950/70 p-5 shadow-xl shadow-black/10 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-slate-900/80 md:ml-16 md:p-7" data-reveal>
+          <span class="absolute -left-[31px] top-8 h-3 w-3 rounded-full bg-cyan-300 shadow-lg shadow-cyan-300/60 md:-left-[47px]" />
+          <div class="mb-5 flex flex-col gap-4 border-b border-white/10 pb-5 md:flex-row md:items-start md:justify-between">
             <div>
-              <h3 class="text-2xl font-bold text-white mb-1">{job.role}</h3>
-              <p class="text-purple-300 text-lg font-medium">{job.company}</p>
+              <h3 class="text-xl font-bold text-white md:text-2xl">{job.role}</h3>
+              <p class="mt-1 text-lg font-medium text-cyan-200">{job.company}</p>
             </div>
-            <div class="flex items-center text-slate-400 mt-2 md:mt-0">
+            <div class="inline-flex w-fit items-center rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-slate-300">
               <svg
-                class="w-4 h-4 mr-2"
+                class="mr-2 h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -45,34 +46,30 @@ const { content } = Astro.props;
               <span>{job.period}</span>
             </div>
           </div>
-          <p class="text-slate-300 mb-4 leading-relaxed">{job.description}</p>
-          <div class="border-t border-purple-500/20 pt-4">
-            <p class="text-purple-300 font-semibold mb-2">
-              {content.sections.projects}:
-            </p>
-            <div class="flex flex-wrap gap-2">
-              {job.projects.map((project: any) => (
-                <span class="flex items-center bg-linear-to-r from-purple-600/20 to-pink-600/20 text-white px-3 py-1 rounded-lg text-sm border border-purple-500/30">
-                  <svg
-                    class="w-4 h-4 mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                  {project}
-                </span>
-              ))}
+          <p class="mb-6 leading-7 text-slate-300">{job.description}</p>
+          <div class="grid gap-6 lg:grid-cols-[1fr_0.8fr]">
+            <div>
+              <p class="mb-3 font-semibold text-cyan-200">{content.sections.impact}</p>
+              <ul class="space-y-2 text-sm leading-relaxed text-slate-300">
+                {job.impact.map((item: string) => (
+                  <li class="flex gap-2">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-300" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p class="mb-3 font-semibold text-cyan-200">{content.sections.projects}</p>
+              <ul class="divide-y divide-white/10 rounded-xl border border-white/10 bg-white/[0.03]">
+                {job.projects.map((project: any) => (
+                  <li class="px-4 py-3 text-sm leading-6 text-slate-300">{project}</li>
+                ))}
+              </ul>
             </div>
           </div>
-        </div>
+        </article>
       ))
     }
   </div>
-</div>
+</section>

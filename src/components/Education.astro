@@ -2,10 +2,10 @@
 const { content } = Astro.props;
 ---
 
-<div>
-  <h2 class="text-3xl font-bold text-white mb-8 flex items-center">
+<section data-reveal>
+  <h2 class="mb-8 flex items-center text-3xl font-bold text-white">
     <svg
-      class="mr-3 text-purple-400 w-8 h-8"
+      class="mr-3 h-8 w-8 text-cyan-300"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -14,7 +14,8 @@ const { content } = Astro.props;
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="2"
-        d="M12 14l9-5-9-5-9 5 9 5z"></path>
+        d="M12 14l9-5-9-5-9 5 9 5z"
+      ></path>
       <path
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -30,15 +31,15 @@ const { content } = Astro.props;
     </svg>
     {content.sections.education}
   </h2>
-  <div class="grid md:grid-cols-2 gap-6">
+  <div class="grid gap-4 md:grid-cols-2">
     {
       content.education.map((edu: any) => (
-        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
-          <h3 class="text-xl font-bold text-white mb-2">{edu.degree}</h3>
-          <p class="text-purple-300 mb-2">{edu.institution}</p>
-          <p class="text-slate-400 text-sm">{edu.period}</p>
+        <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-xl shadow-black/10 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-slate-900/80">
+          <h3 class="mb-2 text-xl font-bold text-white">{edu.degree}</h3>
+          <p class="mb-2 text-cyan-200">{edu.institution}</p>
+          <p class="text-sm text-slate-400">{edu.period}</p>
         </div>
       ))
     }
   </div>
-</div>
+</section>

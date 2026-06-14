@@ -16,12 +16,32 @@ const { title, lang } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Pedro Edward Lumbre Cama - Full Stack Developer CV"
+      content="Pedro Edward Lumbre Cama - Mobile Software Engineer specialized in Flutter, Android, Clean Architecture, cloud integrations and AI-assisted delivery."
     />
     <title>{title}</title>
   </head>
-  <body class="bg-linear-to-b from-gray-900 via-black to-gray-900">
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
     <slot />
+    <script>
+      document.documentElement.classList.add("js-reveal");
+      const revealItems = document.querySelectorAll("[data-reveal]");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14 },
+        );
+        revealItems.forEach((item) => observer.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+    </script>
   </body>
 </html>
 
@@ -30,6 +50,6 @@ const { title, lang } = Astro.props;
   body {
     margin: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
   }
 </style>
